@@ -13,39 +13,36 @@ request.onerror = function (event) {
 
 
 request.onsuccess = function (event) {
-    // save ref to db in global variable
-    db = event.target.result;
+  // when db is successfully created with its object store (from onupgradedneeded event above), save reference to db in global variable
+  db = event.target.result;
 
-    // check if app is online, if true run uploadTransactions() to send all local db data to api
-    if (navigator.onLine) {
-        uploadTransactions();
-    }
+  // check if app is online, if true run uploadTransactions() to send all local db data to api
+  if (navigator.onLine) {
+    uploadTransactions();
+  }
 };
 
-// This function will be executed if there is no internet connection
 function saveRecord(record) {
-    const transaction = db.transaction(['new_transaction'], 'readwrite');
+  const transaction = db.transaction(['new_transaction'], 'readwrite');
 
-    const transactionObjectStore = transaction.objectStore('new_transaction');
+  const transactionObjectStore = transaction.objectStore('new_transaction');
 
-    // add record to your store with add method.
-    transactionObjectStore.add(record);
+  // add record to your store with add method.
+  transactionObjectStore.add(record);
 };
 
-// this function will be executed when internet connection returns
 function uploadTransactions() {
-    // open a transaction on local db
+    // open a transaction on your pending db
     const transaction = db.transaction(['new_transaction'], 'readwrite');
 
-    // access local object store
+    // access your pending object store
     const transactionObjectStore = transaction.objectStore('new_transaction');
 
-    // get all records from stroe and set to variable
+    // get all records from store and set to a variable
     const getAllTransactions = transactionObjectStore.getAll();
 
-    // upon a successful .getAll() execution run:
     getAllTransactions.onsuccess = function() {
-        // if there was data in indexedDB's store, send it to api server
+        // if there was data in indexedDb's store, let's send it to the api server
         if (getAllTransactions.result.length > 0) {
             fetch('/api/transaction/bulk', {
                 method: 'POST',
@@ -60,11 +57,9 @@ function uploadTransactions() {
                         throw new Error(serverResponse);
                     }
 
-                    // open one or more trans
                     const transaction = db.transaction(['new_transaction'], 'readwrite');
-                    // access the new_transaction object store
                     const transactionObjectStore = transaction.objectStore('new_transaction');
-                    // clear all trans in store
+                    // clear all items in your store
                     transactionObjectStore.clear();
 
                     alert('All saved transactions has been submitted!');
