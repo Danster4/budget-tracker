@@ -15,7 +15,7 @@ This is a web application that allows to keep track of your budget, by adding or
 * [Questions](#questions)
 
 ## Installation
-No installation is required for this burget-tracker. All you have to do is visit the Heroku website (INSERT LATER) and you can begin using the application!
+No installation is required for this burget-tracker. All you have to do is visit the Heroku website (https://shielded-gorge-90862.herokuapp.com/) and you can begin using the application!
 
 ## Usage
 To use this web application, please add items to add or subtract from your budget. These items will be added to a graph that will display the change or difference between each transaction.
@@ -34,6 +34,6 @@ There are currently no tests for this application.
 
 ## Questions
 
-My GitHub username is danster4. The link to the Heroku website for this web application is (INSERT LATER). The link to this project's repository is https://github.com/Danster4/budget-tracker The link to my GitHub profile is https://github.com/danster4 . If you would like to contact me for any questions/concerns, please email me at danielmedfordurkov@gmail.com. 
+My GitHub username is danster4. The link to the Heroku website for this web application is (https://shielded-gorge-90862.herokuapp.com/). The link to this project's repository is https://github.com/Danster4/budget-tracker The link to my GitHub profile is https://github.com/danster4 . If you would like to contact me for any questions/concerns, please email me at danielmedfordurkov@gmail.com. 
 
 ## ©️2022 danster4
